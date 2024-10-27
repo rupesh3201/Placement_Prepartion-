@@ -1,5 +1,5 @@
 // src/components/Auth.js
-import  { useState } from "react";
+import { useState } from "react";
 import { auth } from "../services/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
@@ -20,6 +20,7 @@ const Auth = () => {
         await createUserWithEmailAndPassword(auth, email, password);
       }
     } catch (err) {
+      console.error("Authentication error:", err); // Log error for debugging
       setError(err.message);
     }
   };

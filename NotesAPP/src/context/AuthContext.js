@@ -1,6 +1,6 @@
 // src/context/AuthContext.js
 import { createContext, useContext, useEffect, useState } from "react";
-import PropTypes from "prop-types"; // Import PropTypes
+import PropTypes from "prop-types";
 import { auth } from "../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -13,8 +13,12 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("Auth state changed:", user); // Debugging purpose
       setCurrentUser(user);
+    }, (error) => {
+      console.error("Error during auth state change:", error); // Error handling
     });
+
     return () => unsubscribe();
   }, []);
 
@@ -26,5 +30,5 @@ export const AuthProvider = ({ children }) => {
 };
 
 AuthProvider.propTypes = {
-  children: PropTypes.node.isRequired, // Add prop types validation
+  children: PropTypes.node.isRequired,
 };
