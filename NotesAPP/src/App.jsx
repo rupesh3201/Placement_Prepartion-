@@ -1,7 +1,7 @@
 // src/App.js
 
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import Auth from "./components/Auth";
+import Auth from "./component/Auth";
 import Home from "./pages/Home";
 import { useAuth } from "./context/AuthContext";
 
